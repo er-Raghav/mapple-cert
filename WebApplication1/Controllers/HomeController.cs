@@ -33,5 +33,12 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+
+        public ActionResult Elements()
+        {
+            ViewBag.Message = "Elements";
+
+            return View();
+        }
     }
 }
