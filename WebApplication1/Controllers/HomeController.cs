@@ -33,6 +33,12 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+        public ActionResult BlogDetails()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
 
         public ActionResult Elements()
         {
