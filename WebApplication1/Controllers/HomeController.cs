@@ -54,6 +54,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult ISO9001()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
 
 
 
