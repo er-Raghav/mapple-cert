@@ -260,14 +260,22 @@
     <script>
 
 
-                                $(document).ready(function(){
-                                    $("input:text").val("");
-                                    $("input:email").val("");
-                                    $("textarea").val("");
-                                    alert('@ViewBag.ShowMessage');
-                                    
+        $(document).ready(function () {
+            debugger;
+            $(".form-control").val("");
+            $("input[type='text'], textarea").val("");
+            alert('@ViewBag.ShowMessage');
 
-                                });
+
+        });
+
+        //$("input[type='text'], textarea").foreach(
+        //    function () {
+        //        $(this).val('');
+
+        //    }
+        //);
+
 
     </script>
 
