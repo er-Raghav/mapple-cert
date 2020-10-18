@@ -405,6 +405,18 @@
     <Content Include="Views\Home\Elements.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\ISO9001.cshtml" />
+    <Content Include="Views\Home\ISO10002.cshtml" />
+    <Content Include="Views\Home\ISO13485.cshtml" />
+    <Content Include="Views\Home\ISO14001.cshtml" />
+    <Content Include="Views\Home\GOSTRCertification.cshtml" />
+    <Content Include="Views\Home\GoodManufacturingPractice.cshtml" />
+    <Content Include="Views\Home\ISO29990.cshtml" />
+    <Content Include="Views\Home\ISO27001.cshtml" />
+    <Content Include="Views\Home\ISO45001.cshtml" />
+    <Content Include="Views\Home\OHSAS18001.cshtml" />
+    <Content Include="Views\Home\ISO37001.cshtml" />
+    <Content Include="Views\Home\ISO50001.cshtml" />
+    <Content Include="Views\Home\ACCREDITATION.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

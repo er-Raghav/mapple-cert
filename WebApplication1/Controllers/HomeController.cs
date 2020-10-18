@@ -61,7 +61,80 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult ISO10002()
+        {
+            ViewBag.Message = "";
 
+            return View();
+        }
 
+        public ActionResult ISO13485()
+        {
+            ViewBag.Message = "";
+
+            return View();
+
+        }
+        public ActionResult ISO14001()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        public ActionResult GOSTRCertification()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        public ActionResult GoodManufacturingPractice()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        public ActionResult ISO29990()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        public ActionResult ISO27001()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        public ActionResult ISO45001()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        public ActionResult OHSAS18001()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+
+        public ActionResult ISO37001()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        public ActionResult ISO50001()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+        public ActionResult ACCREDITATION()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
     }
 }
