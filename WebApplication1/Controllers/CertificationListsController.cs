@@ -26,9 +26,19 @@ namespace WebApplication1.Controllers
         {
             
             string strSession = Session["UserID"].ToString();
-            CertificationList certificationList = db.CertificationLists.Where(c => c.CertName == certList.CertName && certList.UserID == strSession).FirstOrDefault();
-            return View(certList);
+            CertificationList certificationList = db.CertificationLists.Where(c => c.CertName == certList.CertName && c.UserID == strSession).FirstOrDefault();
+            if (certificationList != null)
+            {
+                certList.CertName = certificationList.CertName;
+                certList.UserID = certificationList.UserID;
+                certList.ID = certificationList.ID;
 
+            }
+            else {
+                ViewBag.Result = "No Certificate found!";
+            }
+
+            return View(certList);
         }
 
         // GET: CertificationLists/Details/5

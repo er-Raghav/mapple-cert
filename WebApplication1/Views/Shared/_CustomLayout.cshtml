@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.ico">
 
     <!-- CSS here -->
-  @Styles.Render("~/template/css");
+    @Styles.Render("~/template/css");
 </head>
 
 <body class="body-bg">
@@ -37,6 +37,12 @@
                                     <ul>
                                         <li><i class="far fa-clock"></i> Mon - SAT: 7.00 am - 10.00 pm</li>
                                         <li>Sun:  Closed</li>
+                                        @if (HttpContext.Current.Session["UserId"] != null && HttpContext.Current.Session["UserId"].ToString() != "")
+                                        {
+                                            <li>Welcome  @HttpContext.Current.Session["UserId"].ToString()! </li>
+                                            <li>@Html.ActionLink("LogOut", "Logout", "Home")</li>
+                                        }
+
                                     </ul>
                                 </div>
                                 <div class="header-info-right">
@@ -206,7 +212,7 @@
     <div id="back-top">
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
-    
+
     <!-- JS here -->
     @Scripts.Render("~/template/js");
     @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")

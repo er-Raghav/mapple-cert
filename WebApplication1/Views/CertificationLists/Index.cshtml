@@ -15,7 +15,7 @@
     </div>
 
 
-    <table class="table">
+    @*<table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.CertName)
@@ -24,24 +24,10 @@
                 @Html.DisplayNameFor(model => model.UserID)
             </th>
             <th></th>
-        </tr>
+        </tr>*@
+    if (Model != null && Model.ID != null)
+    {
+        @Html.Partial("CertDetails", Model)
+    }
 
-        @*@foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CertName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserID)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                    </td>
-                </tr>
-            }*@
-
-    </table>
 }
