@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Security;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Model;
 
 namespace WebApplication1.Controllers
 {
@@ -26,6 +29,42 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+        private MappleDBContext db = new MappleDBContext();
+        [HttpPost]
+        public ActionResult Contact(ContactModel contact)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    ContactU cUs = new ContactU();
+                    cUs.Name = contact.Name;
+                    cUs.Message = contact.Message;
+                    cUs.Subject = contact.Subject;
+                    cUs.Email = contact.Email;
+
+                    db.ContactUS.Add(cUs);
+                    db.SaveChanges();
+
+                    ViewBag.ShowMessage = "Thank you! We will reach you soon.";
+                    contact.Message = string.Empty;
+                    contact.Email = string.Empty;
+                    contact.Name = string.Empty;
+                    contact.Subject = string.Empty;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return View(contact);
+        }
+
+        
+
 
         public ActionResult Services()
         {

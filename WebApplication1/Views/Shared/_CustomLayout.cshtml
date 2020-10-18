@@ -77,6 +77,7 @@
                                                         <li><a href="@Url.Action("Index", "Home")l">Element</a></li>
                                                     </ul>
                                                 </li>
+                                                <li><a href="@Url.Action("Login", "SignIn")">CLIENT SEARCH</a></li>
                                                 <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                                             </ul>
                                         </nav>
@@ -205,10 +206,12 @@
     <div id="back-top">
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
-
+    
     <!-- JS here -->
     @Scripts.Render("~/template/js");
-
+    @Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
     <!-- counter , waypoint -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 
