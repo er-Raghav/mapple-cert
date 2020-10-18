@@ -72,5 +72,35 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+        public ActionResult BlogDetails()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Elements()
+        {
+            ViewBag.Message = "Elements";
+
+            return View();
+        }
+
+        public ActionResult Blog()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult ISO9001()
+        {
+            ViewBag.Message = "";
+
+            return View();
+        }
+
+
+
     }
 }
