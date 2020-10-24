@@ -63,7 +63,12 @@ namespace WebApplication1.Controllers
             return View(contact);
         }
 
-        
+        public ActionResult Logout()
+        {
+
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
 
 
         public ActionResult Services()

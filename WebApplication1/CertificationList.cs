@@ -14,7 +14,7 @@ namespace WebApplication1
     
     public partial class CertificationList
     {
-        public int ID { get; set; }
+        public int? ID { get; set; }
         public string CertName { get; set; }
         public string UserID { get; set; }
     }

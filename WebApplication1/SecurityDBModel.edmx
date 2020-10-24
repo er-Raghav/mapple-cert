@@ -5,13 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EmployeeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CertificationList">
+        <EntityType Name="CertificateInfo">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CertName" Type="varchar" MaxLength="200" />
-          <Property Name="UserID" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CertificateNo" Type="varchar" MaxLength="100" />
+          <Property Name="CompanyName" Type="varchar(max)" />
+          <Property Name="CompanyAddress" Type="varchar(max)" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="Scope" Type="varchar(max)" />
+          <Property Name="RegistrationDate" Type="varchar" MaxLength="100" />
+          <Property Name="ReRegistrationDate" Type="varchar" MaxLength="100" />
+          <Property Name="Standard" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ContactUS">
           <Key>
@@ -33,37 +40,55 @@
           <Property Name="Password" Type="varchar" MaxLength="100" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <Function Name="usp_CertifcateInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mapplecertification">
+          <Parameter Name="CertNumber" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="EmployeeDBModelStoreContainer">
-          <EntitySet Name="CertificationList" EntityType="Self.CertificationList" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ContactUS" EntityType="Self.ContactUS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MappleUsers" EntityType="Self.MappleUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CertificateInfo" EntityType="Self.CertificateInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUS" EntityType="Self.ContactUS" Schema="mapplecertification" store:Type="Tables" />
+          <EntitySet Name="MappleUsers" EntityType="Self.MappleUsers" Schema="mapplecertification" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EmployeeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="MappleUser">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Active" Type="Boolean" />
-        </EntityType>
         <EntityContainer Name="MappleDBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="MappleUsers" EntityType="Self.MappleUser" />
-          <EntitySet Name="CertificationLists" EntityType="EmployeeDBModel.CertificationList" />
+          <FunctionImport Name="usp_CertifcateInfo" ReturnType="Collection(EmployeeDBModel.usp_CertifcateInfo_Result)">
+          <Parameter Name="CertNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CertificateInfoes" EntityType="EmployeeDBModel.CertificateInfo" />
           <EntitySet Name="ContactUS" EntityType="EmployeeDBModel.ContactU" />
+          <EntitySet Name="MappleUsers" EntityType="EmployeeDBModel.MappleUser" />
+          <FunctionImport Name="GetCertificateInfor" EntitySet="CertificateInfoes" ReturnType="Collection(EmployeeDBModel.CertificateInfo)">
+            <Parameter Name="CertNumber" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
-        <EntityType Name="CertificationList">
+        <ComplexType Name="usp_CertifcateInfo_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="CertificateNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CompanyName" Nullable="true" />
+          <Property Type="String" Name="CompanyAddress" Nullable="true" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Scope" Nullable="true" />
+          <Property Type="String" Name="RegistrationDate" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ReRegistrationDate" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Standard" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="CertificateInfo">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CertName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CertificateNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Scope" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReRegistrationDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Standard" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ContactU">
           <Key>
@@ -75,29 +100,51 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="MappleUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EmployeeDBModelStoreContainer" CdmEntityContainer="MappleDBContext">
-          <EntitySetMapping Name="MappleUsers">
-            <EntityTypeMapping TypeName="EmployeeDBModel.MappleUser">
-              <MappingFragment StoreEntitySet="MappleUsers">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CertificationLists">
-            <EntityTypeMapping TypeName="EmployeeDBModel.CertificationList">
-              <MappingFragment StoreEntitySet="CertificationList">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="CertName" ColumnName="CertName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <FunctionImportMapping FunctionImportName="usp_CertifcateInfo" FunctionName="EmployeeDBModel.Store.usp_CertifcateInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="EmployeeDBModel.usp_CertifcateInfo_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CertificateNo" ColumnName="CertificateNo" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="ReRegistrationDate" ColumnName="ReRegistrationDate" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CertificateInfoes">
+            <EntityTypeMapping TypeName="EmployeeDBModel.CertificateInfo">
+              <MappingFragment StoreEntitySet="CertificateInfo">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="ReRegistrationDate" ColumnName="ReRegistrationDate" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CertificateNo" ColumnName="CertificateNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -112,6 +159,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MappleUsers">
+            <EntityTypeMapping TypeName="EmployeeDBModel.MappleUser">
+              <MappingFragment StoreEntitySet="MappleUsers">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCertificateInfor" FunctionName="EmployeeDBModel.Store.usp_CertifcateInfo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

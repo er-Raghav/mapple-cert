@@ -12,6 +12,8 @@ namespace WebApplication1
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MappleDBContext : DbContext
     {
@@ -25,8 +27,35 @@ namespace WebApplication1
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<MappleUser> MappleUsers { get; set; }
-        public virtual DbSet<CertificationList> CertificationLists { get; set; }
+        public virtual DbSet<CertificateInfo> CertificateInfoes { get; set; }
         public virtual DbSet<ContactU> ContactUS { get; set; }
+        public virtual DbSet<MappleUser> MappleUsers { get; set; }
+    
+        public virtual ObjectResult<usp_CertifcateInfo_Result> usp_CertifcateInfo(string certNumber)
+        {
+            var certNumberParameter = certNumber != null ?
+                new ObjectParameter("CertNumber", certNumber) :
+                new ObjectParameter("CertNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_CertifcateInfo_Result>("usp_CertifcateInfo", certNumberParameter);
+        }
+    
+        public virtual ObjectResult<CertificateInfo> GetCertificateInfor(string certNumber)
+        {
+            var certNumberParameter = certNumber != null ?
+                new ObjectParameter("CertNumber", certNumber) :
+                new ObjectParameter("CertNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CertificateInfo>("GetCertificateInfor", certNumberParameter);
+        }
+    
+        public virtual ObjectResult<CertificateInfo> GetCertificateInfor(string certNumber, MergeOption mergeOption)
+        {
+            var certNumberParameter = certNumber != null ?
+                new ObjectParameter("CertNumber", certNumber) :
+                new ObjectParameter("CertNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CertificateInfo>("GetCertificateInfor", mergeOption, certNumberParameter);
+        }
     }
 }

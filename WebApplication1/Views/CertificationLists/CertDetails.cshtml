@@ -1,0 +1,25 @@
+﻿@model WebApplication1.CertificationList
+
+<div>
+    <h4>Certification Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CertName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CertName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+    </dl>
+</div>
+
