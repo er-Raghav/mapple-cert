@@ -73,7 +73,12 @@
                                         <nav>
                                             <ul id="navigation">
                                                 <li><a href="@Url.Action("Index", "Home")">HOME</a></li>
-                                                <li><a href="@Url.Action("About", "Home")">ABOUT</a></li>
+                                                <li>
+                                                    <a href="@Url.Action("About", "Home")">ABOUT</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="@Url.Action("ACCREDITATION", "Home")">ACCREDITATION</a></li>
+                                                    </ul>
+                                                </li>
                                                 <li><a href="@Url.Action("Services", "Home")">SERVICES</a></li>
                                                 <li>
                                                     <a href="#">CERTIFICATION</a>   
