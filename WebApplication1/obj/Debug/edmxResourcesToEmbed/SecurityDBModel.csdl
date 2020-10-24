@@ -1,27 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EmployeeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="MappleUser">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Active" Type="Boolean" />
-  </EntityType>
   <EntityContainer Name="MappleDBContext" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="MappleUsers" EntityType="Self.MappleUser" />
-    <EntitySet Name="CertificationLists" EntityType="EmployeeDBModel.CertificationList" />
+    <FunctionImport Name="usp_CertifcateInfo" ReturnType="Collection(EmployeeDBModel.usp_CertifcateInfo_Result)">
+      <Parameter Name="CertNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="CertificateInfoes" EntityType="EmployeeDBModel.CertificateInfo" />
     <EntitySet Name="ContactUS" EntityType="EmployeeDBModel.ContactU" />
+    <EntitySet Name="MappleUsers" EntityType="EmployeeDBModel.MappleUser" />
+    <FunctionImport Name="GetCertificateInfor" EntitySet="CertificateInfoes" ReturnType="Collection(EmployeeDBModel.CertificateInfo)">
+      <Parameter Name="CertNumber" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
-  <EntityType Name="CertificationList">
+  <ComplexType Name="usp_CertifcateInfo_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="CertificateNo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CompanyName" Nullable="true" />
+    <Property Type="String" Name="CompanyAddress" Nullable="true" />
+    <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Scope" Nullable="true" />
+    <Property Type="String" Name="RegistrationDate" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ReRegistrationDate" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Standard" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Status" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="CertificateInfo">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CertName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CertificateNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Scope" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RegistrationDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ReRegistrationDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Standard" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ContactU">
     <Key>
@@ -32,5 +47,15 @@
     <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MappleUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
   </EntityType>
 </Schema>

@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6c618e85b4c2491badd3dfecf99a68c9" Name="Diagram1">
-        <EntityTypeShape EntityType="EmployeeDBModel.MappleUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmployeeDBModel.CertificationList" Width="1.5" PointX="3.375" PointY="0.75" />
+      <Diagram DiagramId="6c618e85b4c2491badd3dfecf99a68c9" Name="Diagram1" ZoomLevel="112">
+        <EntityTypeShape EntityType="EmployeeDBModel.CertificateInfo" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="EmployeeDBModel.ContactU" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EmployeeDBModel.MappleUser" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

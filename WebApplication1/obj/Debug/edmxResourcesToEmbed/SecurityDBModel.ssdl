@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EmployeeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="CertificationList">
+  <EntityType Name="CertificateInfo">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CertName" Type="varchar" MaxLength="200" />
-    <Property Name="UserID" Type="varchar" MaxLength="50" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CertificateNo" Type="varchar" MaxLength="100" />
+    <Property Name="CompanyName" Type="varchar(max)" />
+    <Property Name="CompanyAddress" Type="varchar(max)" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="Scope" Type="varchar(max)" />
+    <Property Name="RegistrationDate" Type="varchar" MaxLength="100" />
+    <Property Name="ReRegistrationDate" Type="varchar" MaxLength="100" />
+    <Property Name="Standard" Type="varchar" MaxLength="100" />
+    <Property Name="Status" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="ContactUS">
     <Key>
@@ -28,9 +35,12 @@
     <Property Name="Password" Type="varchar" MaxLength="100" />
     <Property Name="Active" Type="bit" />
   </EntityType>
+  <Function Name="usp_CertifcateInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="mapplecertification">
+    <Parameter Name="CertNumber" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="EmployeeDBModelStoreContainer">
-    <EntitySet Name="CertificationList" EntityType="Self.CertificationList" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ContactUS" EntityType="Self.ContactUS" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="MappleUsers" EntityType="Self.MappleUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CertificateInfo" EntityType="Self.CertificateInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactUS" EntityType="Self.ContactUS" Schema="mapplecertification" store:Type="Tables" />
+    <EntitySet Name="MappleUsers" EntityType="Self.MappleUsers" Schema="mapplecertification" store:Type="Tables" />
   </EntityContainer>
 </Schema>

@@ -128,13 +128,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="CertificationList.cs">
+    <Compile Include="CertificateInfo.cs">
       <DependentUpon>SecurityDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ContactU.cs">
       <DependentUpon>SecurityDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\CertificationListsController.cs" />
+    <Compile Include="Controllers\CertificateInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
     <Compile Include="Global.asax.cs">
@@ -160,6 +160,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SecurityDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="usp_CertifcateInfo_Result.cs">
+      <DependentUpon>SecurityDBModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -459,11 +462,6 @@
     <Content Include="SecurityDBModel.edmx.diagram">
       <DependentUpon>SecurityDBModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\CertificationLists\Create.cshtml" />
-    <Content Include="Views\CertificationLists\Delete.cshtml" />
-    <Content Include="Views\CertificationLists\Details.cshtml" />
-    <Content Include="Views\CertificationLists\Edit.cshtml" />
-    <Content Include="Views\CertificationLists\Index.cshtml" />
     <Content Include="Views\Home\ISO10002.cshtml" />
     <Content Include="Views\Home\ISO13485.cshtml" />
     <Content Include="Views\Home\ISO14001.cshtml" />
@@ -476,7 +474,11 @@
     <Content Include="Views\Home\ISO37001.cshtml" />
     <Content Include="Views\Home\ISO50001.cshtml" />
     <Content Include="Views\Home\ACCREDITATION.cshtml" />
-    <Content Include="Views\CertificationLists\CertDetails.cshtml" />
+    <Content Include="Views\CertificateInfo\Create.cshtml" />
+    <Content Include="Views\CertificateInfo\Delete.cshtml" />
+    <Content Include="Views\CertificateInfo\Details.cshtml" />
+    <Content Include="Views\CertificateInfo\Edit.cshtml" />
+    <Content Include="Views\CertificateInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

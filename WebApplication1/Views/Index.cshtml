@@ -1,0 +1,33 @@
+﻿@model WebApplication1.CertificationList
+
+@{
+    ViewBag.Title = "Client Search";
+    Layout = "~/Views/Shared/_CustomLayout.cshtml";
+}
+<h2>Client Search</h2>
+@using (Html.BeginForm())
+{
+
+    <div class="form-group">
+        @Html.EditorFor(model => model.CertName, new { htmlAttributes = new { placeholder = "Search Certificate", @class = "form-control col-sm-4" } })
+        <br />
+        <input type="submit" name="Search Certificate" class="btn btn-primary col-sm-4" />
+    </div>
+
+    <a href="~/Views/CertificationLists/Index.cshtml">~/Views/CertificationLists/Index.cshtml</a>
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CertName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th></th>
+        </tr>*@
+    if (Model != null && Model.ID != null)
+    {
+        @Html.Partial("CertDetails", Model)
+    }
+
+}
